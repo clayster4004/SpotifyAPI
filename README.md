@@ -1,2 +1,2 @@
 # SpotifyAPI
-Test Repo for Spotify Application
+This is hosting a Spotify API based application
