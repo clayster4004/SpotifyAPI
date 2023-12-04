@@ -601,12 +601,13 @@ def main():
 
 
     def get_spotify_auth():
-            auth_manager = SpotifyOAuth(client_id=SPOTIPY_CLIENT_ID,
-                                        client_secret=SPOTIPY_CLIENT_SECRET,
-                                        redirect_uri=SPOTIPY_REDIRECT_URI,
-                                        scope="user-library-read")
-            sp = spotipy.Spotify(auth_manager=auth_manager)
-            return sp
+        auth_manager = SpotifyOAuth(client_id=SPOTIPY_CLIENT_ID,
+                                    client_secret=SPOTIPY_CLIENT_SECRET,
+                                    redirect_uri=SPOTIPY_REDIRECT_URI,
+                                    scope="user-library-read")
+        sp = spotipy.Spotify(auth_manager=auth_manager)
+        st.write(f'{sp}')
+        return sp
 
 
     
