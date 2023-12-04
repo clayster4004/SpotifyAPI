@@ -705,23 +705,23 @@ def run(p):
 
 
 
-def authenticate_spotify():
-    auth_manager = SpotifyOAuth(
-        client_id='YOUR_SPOTIFY_CLIENT_ID',
-        client_secret='YOUR_SPOTIFY_CLIENT_SECRET',
-        redirect_uri='YOUR_SPOTIFY_REDIRECT_URI',
-        scope='playlist-read-private',
-        cache_path='.spotifycache'
-    )
-    if not auth_manager.get_cached_token():
-        auth_url = auth_manager.get_authorize_url()
-        st.write("Please authorize here: ", auth_url)
-        response = st.text_input("Paste the URL you were redirected to after authorization:")
-        code = auth_manager.parse_response_code(response)
-        if code:
-            token_info = auth_manager.get_access_token(code)
-            return token_info
-    return auth_manager.get_cached_token()
+# def authenticate_spotify():
+#     auth_manager = SpotifyOAuth(
+#         client_id='YOUR_SPOTIFY_CLIENT_ID',
+#         client_secret='YOUR_SPOTIFY_CLIENT_SECRET',
+#         redirect_uri='YOUR_SPOTIFY_REDIRECT_URI',
+#         scope='playlist-read-private',
+#         cache_path='.spotifycache'
+#     )
+#     if not auth_manager.get_cached_token():
+#         auth_url = auth_manager.get_authorize_url()
+#         st.write("Please authorize here: ", auth_url)
+#         response = st.text_input("Paste the URL you were redirected to after authorization:")
+#         code = auth_manager.parse_response_code(response)
+#         if code:
+#             token_info = auth_manager.get_access_token(code)
+#             return token_info
+#     return auth_manager.get_cached_token()
 
 
 
@@ -770,20 +770,20 @@ def main():
     st.sidebar.image(image)
 
     #NEW
-    token_info = authenticate_spotify()
+    #token_info = authenticate_spotify()
 
-    if token_info:
-        st.success("Successfully authenticated with Spotify.")
-        sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
-            client_id='SPOTIPY_CLIENT_ID',
-            client_secret='SPOTIPY_CLIENT_SECRET',
-            redirect_uri='SPOTIPY_REDIRECT_URI',
-            scope='playlist-read-private',
-            cache_path='.spotifycache'
-        ))
+    # if token_info:
+    #     st.success("Successfully authenticated with Spotify.")
+    #     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
+    #         client_id='SPOTIPY_CLIENT_ID',
+    #         client_secret='SPOTIPY_CLIENT_SECRET',
+    #         redirect_uri='SPOTIPY_REDIRECT_URI',
+    #         scope='playlist-read-private',
+    #         cache_path='.spotifycache'
+    #     ))
 
-        # Retrieve playlists and handle playlist analysis
-        # Add your code here for playlist retrieval and analysis
+    #     # Retrieve playlists and handle playlist analysis
+    #     # Add your code here for playlist retrieval and analysis
     #NEW END
 
 
