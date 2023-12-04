@@ -559,6 +559,7 @@ def run(p):
 
 # Real Main
 def main():
+    #print('RAN THIS')
     # Spotify app credentials from your Spotify Developer Dashboard
     SPOTIPY_CLIENT_ID = '2bdfeb8580304b9fb343ff8cc8744e76'
     SPOTIPY_CLIENT_SECRET = '73cbcc49de99490f821c2925c2b41419'
@@ -622,9 +623,10 @@ def main():
         if sp:
             print('GOT HERE TO SP EXISTS')
             user_info = sp.current_user()
+            print(f'{user_info}')
             st.write(f"Logged in as {user_info['display_name']}")
-        else:
-            st.write('else executed')
+        #else:
+            #st.write('else executed')
         
         # Spotify API credentials
         #CLIENT_ID = '2bdfeb8580304b9fb343ff8cc8744e76'
