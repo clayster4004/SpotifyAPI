@@ -705,36 +705,53 @@ def run(p):
 
 
 
-
-
-
-
-
-
-
-
-app = Flask(__name__)
-
-@app.route('/callback')
-def spotify_callback():
-    st.write("Callback Route Reached")
-    # This route will handle the Spotify callback
+def authenticate_spotify():
     auth_manager = SpotifyOAuth(
-        client_id='2bdfeb8580304b9fb343ff8cc8744e76',
-        client_secret='73cbcc49de99490f821c2925c2b41419',
-        redirect_uri='https://spotifyanalyzertest.streamlit.app/callback',
+        client_id='YOUR_SPOTIFY_CLIENT_ID',
+        client_secret='YOUR_SPOTIFY_CLIENT_SECRET',
+        redirect_uri='YOUR_SPOTIFY_REDIRECT_URI',
         scope='playlist-read-private',
         cache_path='.spotifycache'
     )
-    code = request.args.get('code')
-    token_info = auth_manager.get_access_token(code)
+    if not auth_manager.get_cached_token():
+        auth_url = auth_manager.get_authorize_url()
+        st.write("Please authorize here: ", auth_url)
+        response = st.text_input("Paste the URL you were redirected to after authorization:")
+        code = auth_manager.parse_response_code(response)
+        if code:
+            token_info = auth_manager.get_access_token(code)
+            return token_info
+    return auth_manager.get_cached_token()
 
-    # Save the token_info or use it as needed for Spotify API requests
-    # You may want to store it securely or use it to authenticate Spotify API requests
-    # For simplicity, you can store it in the session state for now
-    st.session_state.spotify_token_info = token_info
 
-    return "Successfully authenticated with Spotify. You can close this window and return to the app."
+
+
+
+
+
+
+# app = Flask(__name__)
+
+# @app.route('/callback')
+# def spotify_callback():
+#     st.write("Callback Route Reached")
+#     # This route will handle the Spotify callback
+#     auth_manager = SpotifyOAuth(
+#         client_id='2bdfeb8580304b9fb343ff8cc8744e76',
+#         client_secret='73cbcc49de99490f821c2925c2b41419',
+#         redirect_uri='https://spotifyanalyzertest.streamlit.app/callback',
+#         scope='playlist-read-private',
+#         cache_path='.spotifycache'
+#     )
+#     code = request.args.get('code')
+#     token_info = auth_manager.get_access_token(code)
+
+#     # Save the token_info or use it as needed for Spotify API requests
+#     # You may want to store it securely or use it to authenticate Spotify API requests
+#     # For simplicity, you can store it in the session state for now
+#     st.session_state.spotify_token_info = token_info
+
+#     return "Successfully authenticated with Spotify. You can close this window and return to the app."
 
 
 
@@ -752,6 +769,22 @@ def main():
     image = Image.open('Vibify.png')
     st.sidebar.image(image)
 
+    #NEW
+    token_info = authenticate_spotify()
+
+    if token_info:
+        st.success("Successfully authenticated with Spotify.")
+        sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
+            client_id='SPOTIPY_CLIENT_ID',
+            client_secret='SPOTIPY_CLIENT_SECRET',
+            redirect_uri='SPOTIPY_REDIRECT_URI',
+            scope='playlist-read-private',
+            cache_path='.spotifycache'
+        ))
+
+        # Retrieve playlists and handle playlist analysis
+        # Add your code here for playlist retrieval and analysis
+    #NEW END
 
 
     # button_style = f"""
