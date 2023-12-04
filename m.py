@@ -971,4 +971,4 @@ def main():
     if os.path.exists(cache_file):
         os.remove(cache_file)
 if __name__ == '__main__':
-    app.run(port=5000, debug=True, threaded=False)
+    main()
