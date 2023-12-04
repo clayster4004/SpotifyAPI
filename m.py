@@ -622,7 +622,7 @@ def main():
 
     # NEW
     playlists_dict = {}
-    if st.sidebar.button("Manage Spotify Account"):
+    #if st.sidebar.button("Manage Spotify Account"):
         #st.write("GOT HERE")
         #sp = get_spotify_auth()
         #st.write('hi how are ya')
@@ -642,13 +642,13 @@ def main():
         #CLIENT_SECRET = '73cbcc49de99490f821c2925c2b41419'
         
         # # Authenticate the user with Spotify
-        sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
-            client_id='2bdfeb8580304b9fb343ff8cc8744e76',
-            client_secret='73cbcc49de99490f821c2925c2b41419',
-            redirect_uri='https://spotifyanalyzertest.streamlit.app/',  # Update the redirect_uri
-            scope='playlist-read-private',
-            show_dialog=True
-        ))
+        # sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
+        #     client_id='2bdfeb8580304b9fb343ff8cc8744e76',
+        #     client_secret='73cbcc49de99490f821c2925c2b41419',
+        #     redirect_uri='https://spotifyanalyzertest.streamlit.app/',  # Update the redirect_uri
+        #     scope='playlist-read-private',
+        #     show_dialog=True
+        # ))
         # sp_oauth = SpotifyOAuth(
         #     client_id=SPOTIPY_CLIENT_ID,
         #     client_secret=SPOTIPY_CLIENT_SECRET,
@@ -657,16 +657,16 @@ def main():
         # )
         # auth_url = sp_oauth.get_authorize_url()
 
-        
-        user = sp.current_user()
-        st.sidebar.success(f"Logged in as {user['display_name']}")
+        #KEEP
+        # user = sp.current_user()
+        # st.sidebar.success(f"Logged in as {user['display_name']}")
 
-        # Get the playlists of the authenticated user
-        playlists = sp.current_user_playlists()
+        # # Get the playlists of the authenticated user
+        # playlists = sp.current_user_playlists()
 
-        st.session_state.spotify_playlists = playlists['items']
+        # st.session_state.spotify_playlists = playlists['items']
 
-        playlist_name = None
+        # playlist_name = None
         
 
     def generate_analysis(playlist):
