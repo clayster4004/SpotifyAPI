@@ -559,6 +559,38 @@ def run(p):
 
 # Real Main
 def main():
+    # JUST ADDED FIX
+    if "signed_in" not in st.session_state:
+    st.session_state["signed_in"] = False
+    if "cached_token" not in st.session_state:
+        st.session_state["cached_token"] = ""
+    if "code" not in st.session_state:
+        st.session_state["code"] = ""
+    if "oauth" not in st.session_state:
+        st.session_state["oauth"] = None
+    
+    url_params = st.experimental_get_query_params()
+
+        # create oauth object
+    oauth = SpotifyOAuth(scope=scopes,
+                         redirect_uri=uri,
+                         client_id=cid,
+                         client_secret=csecret)
+    # store oauth in session
+    st.session_state["oauth"] = oauth
+
+    # retrieve auth url
+    auth_url = oauth.get_authorize_url()
+    
+    # this SHOULD open the link in the same tab when Streamlit Cloud is updated
+    # via the "_self" target
+    link_html = " <a target=\"_self\" href=\"{url}\" >{msg}</a> ".format(
+        url=auth_url,
+        msg="Click me to authenticate!"
+    )
+
+    #############################################
+    
     #print('RAN THIS')
     # Spotify app credentials from your Spotify Developer Dashboard
     SPOTIPY_CLIENT_ID = '2bdfeb8580304b9fb343ff8cc8744e76'
