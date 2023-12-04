@@ -16,8 +16,8 @@ import os
 #from flask import Flask, request
 
 # Spotify app credentials from your Spotify Developer Dashboard
-SPOTIPY_CLIENT_ID = '2bdfeb8580304b9fb343ff8cc8744e76'
-SPOTIPY_CLIENT_SECRET = '73cbcc49de99490f821c2925c2b41419'
+#SPOTIPY_CLIENT_ID = '2bdfeb8580304b9fb343ff8cc8744e76'
+#SPOTIPY_CLIENT_SECRET = '73cbcc49de99490f821c2925c2b41419'
 SPOTIPY_REDIRECT_URI = 'https://spotifyanalyzertest.streamlit.app'
 
 # Create a SpotifyOAuth instance
@@ -29,10 +29,10 @@ class Playlist:
         # Your Spotify API credentials (note: it's not secure to include your credentials in the code)
         # client_id = '8cfa81fbc4074f3aad32716a36044864'
         # client_secret = 'a64ec813eaa24d19a42c694dbc61ba35'
-        client_id = '2bdfeb8580304b9fb343ff8cc8744e76'
-        client_secret = '73cbcc49de99490f821c2925c2b41419'
+        #client_id = '2bdfeb8580304b9fb343ff8cc8744e76'
+        #client_secret = '73cbcc49de99490f821c2925c2b41419'
         # Set up the Spotify client credentials manager and Spotipy client
-        client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
+        client_credentials_manager = SpotifyClientCredentials(client_id=st.secrets['SPOTIPY_CLIENT_ID], client_secret=st.secrets['SPOTIPY_CLIENT_SECRET'])
         sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
         self._url_type, self._playlist_id = Playlist.id_from_url(playlist_name)  # done
@@ -608,8 +608,8 @@ def main():
         #                             scope="user-library-read")
         # sp = spotipy.Spotify(auth_manager=auth_manager)
         sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
-            client_id='2bdfeb8580304b9fb343ff8cc8744e76',
-            client_secret='73cbcc49de99490f821c2925c2b41419',
+            client_id=st.secrets['SPOTIPY_CLIENT_ID'],
+            client_secret=st.secrets['SPOTIPY_CLIENT_SECRET'],
             redirect_uri='https://spotifyanalyzertest.streamlit.app',  # Update the redirect_uri
             scope='playlist-read-private',
             show_dialog=True
