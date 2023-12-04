@@ -618,6 +618,7 @@ def main():
         st.write("GOT HERE")
         sp = get_spotify_auth()
         if sp:
+            print('GOT HERE TO SP EXISTS')
             user_info = sp.current_user()
             st.write(f"Logged in as {user_info['display_name']}")
         
