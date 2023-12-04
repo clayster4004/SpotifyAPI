@@ -800,7 +800,7 @@ def main():
         # Authenticate the user with Spotify
         sp = spotipy.Spotify(auth_manager=SpotifyOAuth(CLIENT_ID,
                                                        CLIENT_SECRET,
-                                                       redirect_uri="http://localhost:8080/",
+                                                       redirect_uri="https://spotifyanalyzertest.streamlit.app/callback",
                                                        scope="playlist-read-private",  # Scope for reading playlists
                                                        show_dialog=True))
 
