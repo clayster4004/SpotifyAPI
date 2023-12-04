@@ -602,6 +602,7 @@ def main():
     # NEW
     playlists_dict = {}
     if st.sidebar.button("Manage Spotify Account"):
+        st.write("GOT HERE")
         # Spotify API credentials
         CLIENT_ID = '2bdfeb8580304b9fb343ff8cc8744e76'
         CLIENT_SECRET = '73cbcc49de99490f821c2925c2b41419'
