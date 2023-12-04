@@ -623,7 +623,7 @@ def main():
         if sp:
             print('GOT HERE TO SP EXISTS')
             user_info = sp.current_user()
-            print(f'{user_info}')
+            print(f'I dont think i can get here')
             st.write(f"Logged in as {user_info['display_name']}")
         #else:
             #st.write('else executed')
