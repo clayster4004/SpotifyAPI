@@ -16,8 +16,7 @@ import os
 #from flask import Flask, request
 
 # Spotify app credentials from your Spotify Developer Dashboard
-#SPOTIPY_CLIENT_ID = '2bdfeb8580304b9fb343ff8cc8744e76'
-#SPOTIPY_CLIENT_SECRET = '73cbcc49de99490f821c2925c2b41419'
+
 SPOTIPY_REDIRECT_URI = 'https://spotifyanalyzertest.streamlit.app'
 
 # Create a SpotifyOAuth instance
@@ -27,10 +26,6 @@ class Playlist:
     def __init__(self, playlist_name):
 
         # Your Spotify API credentials (note: it's not secure to include your credentials in the code)
-        # client_id = '8cfa81fbc4074f3aad32716a36044864'
-        # client_secret = 'a64ec813eaa24d19a42c694dbc61ba35'
-        #client_id = '2bdfeb8580304b9fb343ff8cc8744e76'
-        #client_secret = '73cbcc49de99490f821c2925c2b41419'
         # Set up the Spotify client credentials manager and Spotipy client
         client_credentials_manager = SpotifyClientCredentials(client_id=st.secrets['SPOTIPY_CLIENT_ID'], client_secret=st.secrets['SPOTIPY_CLIENT_SECRET'])
         sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
@@ -331,8 +326,7 @@ class Playlist:
 
 
 # def display_page():
-#     SPOTIPY_CLIENT_ID = '2bdfeb8580304b9fb343ff8cc8744e76'
-#     SPOTIPY_CLIENT_SECRET = '73cbcc49de99490f821c2925c2b41419'
+
 #     SPOTIPY_REDIRECT_URI = 'http://localhost:8080/'
     
 # #     # Keep
@@ -561,8 +555,6 @@ def run(p):
 def main():
     #print('RAN THIS')
     # Spotify app credentials from your Spotify Developer Dashboard
-    SPOTIPY_CLIENT_ID = '2bdfeb8580304b9fb343ff8cc8744e76'
-    SPOTIPY_CLIENT_SECRET = '73cbcc49de99490f821c2925c2b41419'
     SPOTIPY_REDIRECT_URI = 'https://spotifyanalyzertest.streamlit.app'
     
     st.title("Spotify Playlist Analyzer")
@@ -638,17 +630,7 @@ def main():
             #st.write('else executed')
         
         # Spotify API credentials
-        #CLIENT_ID = '2bdfeb8580304b9fb343ff8cc8744e76'
-        #CLIENT_SECRET = '73cbcc49de99490f821c2925c2b41419'
-        
-        # # Authenticate the user with Spotify
-        # sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
-        #     client_id='2bdfeb8580304b9fb343ff8cc8744e76',
-        #     client_secret='73cbcc49de99490f821c2925c2b41419',
-        #     redirect_uri='https://spotifyanalyzertest.streamlit.app/',  # Update the redirect_uri
-        #     scope='playlist-read-private',
-        #     show_dialog=True
-        # ))
+
         # sp_oauth = SpotifyOAuth(
         #     client_id=SPOTIPY_CLIENT_ID,
         #     client_secret=SPOTIPY_CLIENT_SECRET,
