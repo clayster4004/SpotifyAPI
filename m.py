@@ -13,6 +13,7 @@ import re
 import time
 from spotipy.oauth2 import SpotifyOAuth
 import os
+from flask import Flask, request
 
 # Spotify app credentials from your Spotify Developer Dashboard
 SPOTIPY_CLIENT_ID = '2bdfeb8580304b9fb343ff8cc8744e76'
@@ -712,7 +713,27 @@ def run(p):
 
 
 
+app = Flask(__name__)
 
+@app.route('/callback')
+def spotify_callback():
+    # This route will handle the Spotify callback
+    auth_manager = SpotifyOAuth(
+        client_id='2bdfeb8580304b9fb343ff8cc8744e76',
+        client_secret='73cbcc49de99490f821c2925c2b41419',
+        redirect_uri='https://spotifyanalyzertest.streamlit.app/callback',
+        scope='playlist-read-private',
+        cache_path='.spotifycache'
+    )
+    code = request.args.get('code')
+    token_info = auth_manager.get_access_token(code)
+
+    # Save the token_info or use it as needed for Spotify API requests
+    # You may want to store it securely or use it to authenticate Spotify API requests
+    # For simplicity, you can store it in the session state for now
+    st.session_state.spotify_token_info = token_info
+
+    return "Successfully authenticated with Spotify. You can close this window and return to the app."
 
 
 
@@ -798,11 +819,13 @@ def main():
         CLIENT_SECRET = '73cbcc49de99490f821c2925c2b41419'
         
         # Authenticate the user with Spotify
-        sp = spotipy.Spotify(auth_manager=SpotifyOAuth(CLIENT_ID,
-                                                       CLIENT_SECRET,
-                                                       redirect_uri="https://spotifyanalyzertest.streamlit.app/callback",
-                                                       scope="playlist-read-private",  # Scope for reading playlists
-                                                       show_dialog=True))
+        sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
+            client_id='2bdfeb8580304b9fb343ff8cc8744e76',
+            client_secret='73cbcc49de99490f821c2925c2b41419',
+            redirect_uri='https://spotifyanalyzertest.streamlit.app/callback',  # Update the redirect_uri
+            scope='playlist-read-private',
+            show_dialog=True
+        ))
 
         user = sp.current_user()
         st.sidebar.success(f"Logged in as {user['display_name']}")
@@ -948,4 +971,4 @@ def main():
     if os.path.exists(cache_file):
         os.remove(cache_file)
 if __name__ == '__main__':
-    main()
+    app.run(port=5000, debug=True)
