@@ -625,7 +625,7 @@ def main():
 
         
         # user = sp.current_user()
-        st.sidebar.success(f"Logged in as {user['display_name']}")
+        #st.sidebar.success(f"Logged in as {user['display_name']}")
 
         # Get the playlists of the authenticated user
         playlists = sp.current_user_playlists()
