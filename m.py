@@ -561,7 +561,7 @@ def run(p):
 def main():
     # JUST ADDED FIX
     if "signed_in" not in st.session_state:
-    st.session_state["signed_in"] = False
+        st.session_state["signed_in"] = False
     if "cached_token" not in st.session_state:
         st.session_state["cached_token"] = ""
     if "code" not in st.session_state:
