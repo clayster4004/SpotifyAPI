@@ -559,39 +559,6 @@ def run(p):
 
 # Real Main
 def main():
-    # JUST ADDED FIX
-    if "signed_in" not in st.session_state:
-        st.session_state["signed_in"] = False
-    if "cached_token" not in st.session_state:
-        st.session_state["cached_token"] = ""
-    if "code" not in st.session_state:
-        st.session_state["code"] = ""
-    if "oauth" not in st.session_state:
-        st.session_state["oauth"] = None
-    
-    url_params = st.experimental_get_query_params()
-    SPOTIPY_CLIENT_ID = '2bdfeb8580304b9fb343ff8cc8744e76'
-    SPOTIPY_CLIENT_SECRET = '73cbcc49de99490f821c2925c2b41419'
-    SPOTIPY_REDIRECT_URI = 'https://spotifyanalyzertest.streamlit.app'
-        # create oauth object
-    oauth = SpotifyOAuth(redirect_uri=SPOTIPY_REDIRECT_URI,
-                         client_id=SPOTIPY_CLIENT_ID,
-                         client_secret=SPOTIPY_CLIENT_SECRET)
-    # store oauth in session
-    st.session_state["oauth"] = oauth
-
-    # retrieve auth url
-    auth_url = oauth.get_authorize_url()
-    
-    # this SHOULD open the link in the same tab when Streamlit Cloud is updated
-    # via the "_self" target
-    link_html = " <a target=\"_self\" href=\"{url}\" >{msg}</a> ".format(
-        url=auth_url,
-        msg="Click me to authenticate!"
-    )
-
-    #############################################
-    
     #print('RAN THIS')
     # Spotify app credentials from your Spotify Developer Dashboard
     SPOTIPY_CLIENT_ID = '2bdfeb8580304b9fb343ff8cc8744e76'
@@ -656,11 +623,11 @@ def main():
     # NEW
     playlists_dict = {}
     if st.sidebar.button("Manage Spotify Account"):
-        st.write("GOT HERE")
+        #st.write("GOT HERE")
         #sp = get_spotify_auth()
-        st.write('hi how are ya')
-        user_info = sp.current_user()
-        st.write(f"Logged in as {user_info['display_name']}")
+        #st.write('hi how are ya')
+        #user_info = sp.current_user()
+        #st.write(f"Logged in as {user_info['display_name']}")
         #st.session_state.sp = sp
         #if sp:
             #print('GOT HERE TO SP EXISTS')
@@ -675,13 +642,13 @@ def main():
         #CLIENT_SECRET = '73cbcc49de99490f821c2925c2b41419'
         
         # # Authenticate the user with Spotify
-        # sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
-        #     client_id='2bdfeb8580304b9fb343ff8cc8744e76',
-        #     client_secret='73cbcc49de99490f821c2925c2b41419',
-        #     redirect_uri='https://spotifyanalyzertest.streamlit.app/',  # Update the redirect_uri
-        #     scope='playlist-read-private',
-        #     show_dialog=True
-        # ))
+        sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
+            client_id='2bdfeb8580304b9fb343ff8cc8744e76',
+            client_secret='73cbcc49de99490f821c2925c2b41419',
+            redirect_uri='https://spotifyanalyzertest.streamlit.app/',  # Update the redirect_uri
+            scope='playlist-read-private',
+            show_dialog=True
+        ))
         # sp_oauth = SpotifyOAuth(
         #     client_id=SPOTIPY_CLIENT_ID,
         #     client_secret=SPOTIPY_CLIENT_SECRET,
@@ -691,8 +658,8 @@ def main():
         # auth_url = sp_oauth.get_authorize_url()
 
         
-        #user = sp.current_user()
-        #st.sidebar.success(f"Logged in as {user['display_name']}")
+        user = sp.current_user()
+        st.sidebar.success(f"Logged in as {user['display_name']}")
 
         # Get the playlists of the authenticated user
         playlists = sp.current_user_playlists()
