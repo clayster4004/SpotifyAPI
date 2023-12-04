@@ -32,7 +32,7 @@ class Playlist:
         #client_id = '2bdfeb8580304b9fb343ff8cc8744e76'
         #client_secret = '73cbcc49de99490f821c2925c2b41419'
         # Set up the Spotify client credentials manager and Spotipy client
-        client_credentials_manager = SpotifyClientCredentials(client_id=st.secrets['SPOTIPY_CLIENT_ID], client_secret=st.secrets['SPOTIPY_CLIENT_SECRET'])
+        client_credentials_manager = SpotifyClientCredentials(client_id=st.secrets['SPOTIPY_CLIENT_ID'], client_secret=st.secrets['SPOTIPY_CLIENT_SECRET'])
         sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
         self._url_type, self._playlist_id = Playlist.id_from_url(playlist_name)  # done
