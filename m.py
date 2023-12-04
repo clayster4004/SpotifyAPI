@@ -631,7 +631,7 @@ def main():
         #     redirect_uri='https://spotifyanalyzertest.streamlit.app/',  # Update the redirect_uri
         #     scope='playlist-read-private',
         #     show_dialog=True
-        ))
+        # ))
         # sp_oauth = SpotifyOAuth(
         #     client_id=SPOTIPY_CLIENT_ID,
         #     client_secret=SPOTIPY_CLIENT_SECRET,
