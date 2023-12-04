@@ -734,9 +734,12 @@ def main():
     if playlist_name:
         loading_container.markdown('<div class="loading-bar"><div></div></div>', unsafe_allow_html=True)
         # This is where you instantiate the class
-        p = Playlist(playlist_name)
-        flag = True
-        loading_container.empty()
+        try:
+            p = Playlist(playlist_name)
+            flag = True
+            loading_container.empty()
+        except:
+            st.sidebar.write('Invalid Link')
 
 
     # If we have a valid playlist ID, proceed to fetch and display playlist data
