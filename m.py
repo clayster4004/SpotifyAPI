@@ -599,32 +599,49 @@ def main():
         playlist_name = st.sidebar.text_input("Enter the URL of the Spotify playlist:")
 
 
+
+    def get_spotify_auth():
+            auth_manager = SpotifyOAuth(client_id=SPOTIPY_CLIENT_ID,
+                                        client_secret=SPOTIPY_CLIENT_SECRET,
+                                        redirect_uri=SPOTIPY_REDIRECT_URI,
+                                        scope="user-library-read")
+            sp = spotipy.Spotify(auth_manager=auth_manager)
+            return sp
+
+
+    
+
     # NEW
     playlists_dict = {}
     if st.sidebar.button("Manage Spotify Account"):
         st.write("GOT HERE")
+        sp = get_spotify_auth()
+        if sp:
+            user_info = sp.current_user()
+            st.write(f"Logged in as {user_info['display_name']}")
+        
         # Spotify API credentials
         #CLIENT_ID = '2bdfeb8580304b9fb343ff8cc8744e76'
         #CLIENT_SECRET = '73cbcc49de99490f821c2925c2b41419'
         
-        # Authenticate the user with Spotify
+        # # Authenticate the user with Spotify
         # sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
         #     client_id='2bdfeb8580304b9fb343ff8cc8744e76',
         #     client_secret='73cbcc49de99490f821c2925c2b41419',
         #     redirect_uri='https://spotifyanalyzertest.streamlit.app/',  # Update the redirect_uri
         #     scope='playlist-read-private',
         #     show_dialog=True
-        # ))
-        sp_oauth = SpotifyOAuth(
-            client_id=SPOTIPY_CLIENT_ID,
-            client_secret=SPOTIPY_CLIENT_SECRET,
-            redirect_uri=SPOTIPY_REDIRECT_URI,
-            scope='user-library-read'
-        )
-        auth_url = sp_oauth.get_authorize_url()
+        ))
+        # sp_oauth = SpotifyOAuth(
+        #     client_id=SPOTIPY_CLIENT_ID,
+        #     client_secret=SPOTIPY_CLIENT_SECRET,
+        #     redirect_uri=SPOTIPY_REDIRECT_URI,
+        #     scope='user-library-read'
+        # )
+        # auth_url = sp_oauth.get_authorize_url()
 
         
-        # user = sp.current_user()
+        #user = sp.current_user()
         #st.sidebar.success(f"Logged in as {user['display_name']}")
 
         # Get the playlists of the authenticated user
