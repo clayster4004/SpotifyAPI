@@ -618,6 +618,7 @@ def main():
         st.write("GOT HERE")
         sp = get_spotify_auth()
         st.write('hi how are ya')
+        st.session_state.sp = sp
         if sp:
             print('GOT HERE TO SP EXISTS')
             user_info = sp.current_user()
@@ -650,7 +651,7 @@ def main():
         #st.sidebar.success(f"Logged in as {user['display_name']}")
 
         # Get the playlists of the authenticated user
-        playlists = sp.current_user_playlists()
+        playlists = st.session_state.sp.current_user_playlists()
 
         st.session_state.spotify_playlists = playlists['items']
 
