@@ -17,7 +17,7 @@ import os
 # Spotify app credentials from your Spotify Developer Dashboard
 SPOTIPY_CLIENT_ID = '2bdfeb8580304b9fb343ff8cc8744e76'
 SPOTIPY_CLIENT_SECRET = '73cbcc49de99490f821c2925c2b41419'
-SPOTIPY_REDIRECT_URI = 'https://spotifyanalyzertest.streamlit.app/'
+SPOTIPY_REDIRECT_URI = 'https://spotifyanalyzertest.streamlit.app/callback'
 
 # Create a SpotifyOAuth instance
 #sp_oauth = SpotifyOAuth(SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, SPOTIPY_REDIRECT_URI, scope='user-library-read')
