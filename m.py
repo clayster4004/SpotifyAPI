@@ -622,6 +622,8 @@ def main():
             print('GOT HERE TO SP EXISTS')
             user_info = sp.current_user()
             st.write(f"Logged in as {user_info['display_name']}")
+        else:
+            st.write('else executed')
         
         # Spotify API credentials
         #CLIENT_ID = '2bdfeb8580304b9fb343ff8cc8744e76'
