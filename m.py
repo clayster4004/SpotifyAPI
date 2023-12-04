@@ -626,12 +626,14 @@ def main():
         st.write("GOT HERE")
         sp = get_spotify_auth()
         st.write('hi how are ya')
+        user_info = sp.current_user()
+        st.write(f"Logged in as {user_info['display_name']}")
         #st.session_state.sp = sp
-        if sp:
-            print('GOT HERE TO SP EXISTS')
-            user_info = sp.current_user()
-            print(f'I dont think i can get here')
-            st.write(f"Logged in as {user_info['display_name']}")
+        #if sp:
+            #print('GOT HERE TO SP EXISTS')
+            #user_info = sp.current_user()
+            #print(f'I dont think i can get here')
+            #st.write(f"Logged in as {user_info['display_name']}")
         #else:
             #st.write('else executed')
         
