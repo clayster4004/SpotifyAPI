@@ -717,7 +717,7 @@ app = Flask(__name__)
 
 @app.route('/callback')
 def spotify_callback():
-    print("Callback Route Reached")
+    st.write("Callback Route Reached")
     # This route will handle the Spotify callback
     auth_manager = SpotifyOAuth(
         client_id='2bdfeb8580304b9fb343ff8cc8744e76',
