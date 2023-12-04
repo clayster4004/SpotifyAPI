@@ -617,6 +617,7 @@ def main():
     if st.sidebar.button("Manage Spotify Account"):
         st.write("GOT HERE")
         sp = get_spotify_auth()
+        st.write('hi how are ya')
         if sp:
             print('GOT HERE TO SP EXISTS')
             user_info = sp.current_user()
