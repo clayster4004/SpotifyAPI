@@ -570,12 +570,13 @@ def main():
         st.session_state["oauth"] = None
     
     url_params = st.experimental_get_query_params()
-
+    SPOTIPY_CLIENT_ID = '2bdfeb8580304b9fb343ff8cc8744e76'
+    SPOTIPY_CLIENT_SECRET = '73cbcc49de99490f821c2925c2b41419'
+    SPOTIPY_REDIRECT_URI = 'https://spotifyanalyzertest.streamlit.app'
         # create oauth object
-    oauth = SpotifyOAuth(scope=scopes,
-                         redirect_uri=uri,
-                         client_id=cid,
-                         client_secret=csecret)
+    oauth = SpotifyOAuth(redirect_uri=SPOTIPY_REDIRECT_URI,
+                         client_id=SPOTIPY_CLIENT_ID,
+                         client_secret=SPOTIPY_CLIENT_SECRET)
     # store oauth in session
     st.session_state["oauth"] = oauth
 
@@ -656,7 +657,7 @@ def main():
     playlists_dict = {}
     if st.sidebar.button("Manage Spotify Account"):
         st.write("GOT HERE")
-        sp = get_spotify_auth()
+        #sp = get_spotify_auth()
         st.write('hi how are ya')
         user_info = sp.current_user()
         st.write(f"Logged in as {user_info['display_name']}")
