@@ -762,8 +762,7 @@ def main():
     SPOTIPY_CLIENT_ID = '2bdfeb8580304b9fb343ff8cc8744e76'
     SPOTIPY_CLIENT_SECRET = '73cbcc49de99490f821c2925c2b41419'
     SPOTIPY_REDIRECT_URI = 'https://spotifyanalyzertest.streamlit.app'
-    st.write("Hi there")
-
+    
     st.title("Spotify Playlist Analyzer")
 
     # Load an image and display it in the Streamlit sidebar
